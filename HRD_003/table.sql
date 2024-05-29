@@ -1,0 +1,30 @@
+create table MEMBER_2024(
+	USERID VARCHAR2(15) PRIMARY KEY,
+	USERNAME VARCHAR2(20) NOT NULL,
+	PASSWD VARCHAR2(10),
+	JUMIN VARCHAR2(13),
+	GENDER CHAR(1),
+	ADDRESS VARCHAR2(50),
+	JOBCD CHAR(1),
+	MAILRCV CHAR(1),
+	INTRO VARCHAR2(50)
+)
+INSERT INTO MEMBER_2024 values('seojh','서장훈','s123!','0000001111111','1','안양시 안양동','1','Y','방송인');
+INSERT INTO MEMBER_2024 values('honggd','홍길동','h123!','1111112222222','2','수원시 수원동','2','Y','축구선수');
+INSERT INTO MEMBER_2024 values('kanggc','강감찬','k123!','2222223333333','1','청주시 청주동','3','N','농구선수');
+INSERT INTO MEMBER_2024 values('yooks','유관순','y123!','4444445555555','2','과천시 과천동','3','N','발레리나');
+INSERT INTO MEMBER_2024 values('leess','이순신','e123!','5555556666666','1','성남시 성남동','1','Y','회사원');
+
+select * from MEMBER_2024;
+
+SELECT USERID, USERNAME, SUBSTR(JUMIN,5,2) JUMIN, DECODE(GENDER,'1','남','2','여') GENDER,
+ADDRESS, DECODE(JOBCD,'1','학생','2','회사원','3','공무원','4','군인','5','기타') JOBCD, 
+DECODE(MAILRCV,'Y','수신함','N','수신하지않음') MAILRCV, INTRO FROM MEMBER_2024
+
+SELECT USERID, USERNAME, SUBSTR(JUMIN,1,2) ||SUBSTR(JUMIN,3,2)||SUBSTR(JUMIN,5,2) JUMIN, 
+DECODE(GENDER,'1','남','2','여') GENDER,
+DECODE(JOBCD,'1','학생','2','회사원','3','공무원','4','군인','5','기타')JOBCD 
+FROM MEMBER_2024;
+
+UPDATE MEMBER_2024 SET USERNAME = ?, PASSWD = ?, JUMIN = ?, GENDER = ?, 
+ADDRESS = ?, JOBCD = ?, MAILRCV = ?, INTRO = ? WHERE USERID = ?;
